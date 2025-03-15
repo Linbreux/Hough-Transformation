@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/HoughDrawScreen.qml</file>
+        <file>qml/HoughTransformScreen.qml</file>
+    </qresource>
+</RCC>
