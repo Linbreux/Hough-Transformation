@@ -16,16 +16,37 @@ ApplicationWindow {
       }
     RowLayout{
       spacing: 2
-      HoughDrawScreen{
+      ColumnLayout{
+        Text{
+          padding: 10
+          text: "Draw"
+          font.family: "Helvetica"
+          font.pointSize: 15
+        }
+        HoughDrawScreen{
           Layout.fillWidth: true
           Layout.preferredWidth: 600
           Layout.minimumHeight: 600
+        }
       }
-      HoughTransformScreen{
+
+      ColumnLayout{
+        Text{
+          padding: 10
+          text: "Transformation"
+          font.family: "Helvetica"
+          font.pointSize: 15
+        }
+        HoughTransformScreen{
           Layout.fillWidth: true
           Layout.preferredWidth: 600
           Layout.minimumHeight: 600
+        }
       }
+    }
+    Button{
+      text: "Clear"
+      onClicked: canvasController.clearAll()
     }
   }
 }

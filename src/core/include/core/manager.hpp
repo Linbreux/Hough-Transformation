@@ -47,6 +47,10 @@ public:
             }),
         this->drawables.end());
   }
+
+  auto removeAll(){
+    this->drawables.clear();
+  }
 };
 } // namespace core
 

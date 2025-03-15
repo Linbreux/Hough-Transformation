@@ -15,6 +15,11 @@ Rectangle{
     property var yOffset: 300
     onPaint: {
       var ctx = getContext("2d");
+      if (clear == true) {
+        ctx.reset();
+        canvas.clear = false;
+      }
+
       ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
       var pointToDrawList = canvasController.transformList;
 
@@ -45,7 +50,7 @@ Rectangle{
 
     Connections {
       target: canvasController
-      onClearCanvas:{
+      onClearCanvasTransform:{
         canvas.clear = true
         canvas.requestPaint() // Repaint when points change
       }

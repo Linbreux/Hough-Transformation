@@ -121,6 +121,12 @@ public:
     emit changedPoints();
   }
 
+  Q_INVOKABLE void clearAll(){
+    this->manager.removeAll();
+    emit clearCanvas();
+    emit clearCanvasTransform();
+  }
+
 private:
   core::Manager& manager;
   QList<QPoint> m_points;
@@ -130,6 +136,7 @@ signals:
   void changedPoints() const;
   void changedTransform() const;
   void clearCanvas() const;
+  void clearCanvasTransform() const;
 };
 
 #endif // DRAWINGCONTROLLER_H

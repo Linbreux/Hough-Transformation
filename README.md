@@ -1,5 +1,7 @@
 # Hough transformation in QT
 
+![example](./animation.gif)
+
 Development:
 ```bash
 nix develop
