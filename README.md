@@ -1,12 +1,12 @@
 # Hough transformation in QT
 
 Development:
-```
+```bash
 nix develop
 just build
 ```
 Running:
-```
+```bash
 # using Development
 nix develop
 just build::build_run
