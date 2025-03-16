@@ -1,6 +1,6 @@
-[![CI](https://github.com/Linbreux/Hough-Transformation/actions/workflows/build.yml/badge.svg)](https://github.com/Linbreux/Hough-Transformation/actions/workflows/build.yml)
-
 # Hough Transformation in QT
+
+[![CI](https://github.com/Linbreux/Hough-Transformation/actions/workflows/build.yml/badge.svg)](https://github.com/Linbreux/Hough-Transformation/actions/workflows/build.yml)
 
 This project visualizes the Hough transformation in real time using QT. The application provides an interactive interface where users can draw on a canvas and observe the corresponding Hough transformation in a separate window.
 
