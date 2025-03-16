@@ -1,5 +1,5 @@
 {
-  description = "Flake for building a Qt GUI program";
+  description = "Hough transformation visualizer";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs";
