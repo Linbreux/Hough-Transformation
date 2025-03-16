@@ -28,34 +28,23 @@ public:
   Point &operator=(const Point &) = default;
   Point &operator=(Point &&) = default;
 
-  Point(int x, int y, std::shared_ptr<Point> connectedTo = nullptr, int size = 1)
-    : x(x)
-    , y(y)
-    , connectedPoint(connectedTo)
-    , size(size)
-  {
-  };
+  Point(int x, int y, std::shared_ptr<Point> connectedTo = nullptr, int size = 1);
 
-  auto setColor(std::string color) -> void {
-    this->color = color;
-  }
+  auto setColor(std::string color) -> void;
+  auto getColor() const -> std::optional<std::string>;
 
-  auto getColor() -> std::optional<std::string> {
-    return this->color;
-  }
+  void setType(Type type) override;
+  auto getType() -> Type override;
 
-  auto getType() -> Drawable::Type override { return this->type; }
-  auto setType(Drawable::Type type) -> void override { this->type = type; }
+  auto getX() const -> int;
+  auto getY() const -> int;
+  auto getSize() const -> int;
+  auto doTransform() const -> std::vector<Transform::Hough::Polair>;
 
-  auto getX() -> int { return this->x; };
-  auto getY() -> int { return this->y; };
-  auto getSize() -> int { return this->size; }
-  auto doTransform() -> std::vector<Transform::Hough::Polair> { return Transform::Hough::transformFromCartesian(this->x, this->y);}
+  auto getPoint() const -> std::tuple<int,int,int>;
 
-  auto getPoint() -> std::tuple<int,int,int> { return std::make_tuple(this->x, this->y, this->size);}
-
-  auto isConnected() -> bool {return !this->connectedPoint.expired(); }
-  auto getConnectedPoint() -> std::weak_ptr<Point> { return this->connectedPoint; }
+  auto isConnected() const -> bool;
+  auto getConnectedPoint() const -> std::weak_ptr<Point>;
 };
 } // namespace core
 

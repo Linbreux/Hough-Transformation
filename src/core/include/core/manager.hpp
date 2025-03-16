@@ -2,10 +2,10 @@
 #define COREMANAGER_H
 
 #include "drawable.hpp"
-#include <algorithm>
-#include <iostream>
+
 #include <memory>
 #include <vector>
+
 namespace core {
 class Manager {
 public:
@@ -16,41 +16,42 @@ public:
 private:
   std::vector<draw_sptr> drawables;
 public:
-  void addDrawable( draw_sptr drawableToAdd ){
-    this->drawables.push_back(std::move(drawableToAdd));
-  }
+  /**
+   *  Add a a drawable to the manager
+   *  @param draw_sptr drawable pointer
+   */
+  void addDrawable( draw_sptr drawableToAdd );
 
-  auto getDrawables() -> const std::vector<draw_sptr>& {
-    return this->drawables;
-  }
+  /**
+   *  Get a const list of drawables. Can be used to draw objects.
+   *  @return const std::vector<draw_sptr>& A list of drawables
+   */
+  auto getDrawables() -> const std::vector<draw_sptr>&;
 
-  auto getLastDrawable() -> std::weak_ptr<core::Drawable>{ 
-    return this->drawables.empty() 
-      ? std::weak_ptr<core::Drawable>()
-      : this->drawables.at(this->drawables.size()-1);
-  }
+  /**
+   *  Get the last Drawable
+   *  Usefull when needing previouse Drawable.
+   *  eg. when drawing a line we need the previouse point
+   *  @return std::weak_ptr<core::Drawable> the last drawable of the list
+   **/
+  auto getLastDrawable() -> std::weak_ptr<core::Drawable>;
 
-  auto redrawAll() -> void{
-    for(auto drawing: drawables){
-      drawing->setState(core::Drawable::State::NeedsDraw);
-    }
-  }
+  /**
+   *  Redraw all objects.
+   *  Sets the state to NeedsDraw.
+   */
+  void redrawAll();
 
-  auto removeType(core::Drawable::Type type){
-    this->drawables.erase(
-        std::remove_if(this->drawables.begin(), this->drawables.end(),
-            [&](const std::shared_ptr<core::Drawable> obj) {
-                if (obj->getType() == core::Drawable::Type::ReverseTransformPoint){
-                  return true;
-                }
-                return false;
-            }),
-        this->drawables.end());
-  }
+  /**
+   *  Remove a specific type from the managers drawables list.
+   *  @param type The type to remove
+   */
+  void removeType(core::Drawable::Type type);
 
-  auto removeAll(){
-    this->drawables.clear();
-  }
+  /**
+   *  Remove all drawables from the manager.
+   */
+  void removeAll();
 };
 } // namespace core
 

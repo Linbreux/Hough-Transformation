@@ -20,26 +20,49 @@ public:
 public:
   virtual ~Drawable() = default;
 
+  // ------- Pure virtual functions 
+  /**
+   *  Set the type of the Drawable
+   *  eg. Point, ReverseTransformPoint, ...
+   *  @param type the type to set
+   */
   virtual auto setType(Drawable::Type type) -> void = 0;
-  virtual Type getType() = 0;
 
-  virtual void setState( State status ){
-    this->state = status;
-  };
-  
-  virtual void setDrawTransformation(bool set) { this->allowDrawTransformation = set;}
-  virtual bool drawTransformation(){ return this->allowDrawTransformation; }
+  /**
+   *  Get the type of the Drawable
+   *  eg. Point, ReverseTransformPoint, ...
+   *  @return Drawable::Type
+   */
+  virtual auto getType() -> Type = 0;
 
-  virtual bool needsDrawing( ){
-    switch (state) {
-      case State::NeedsDraw:
-        return true;
-      case State::NeedsUpdate:
-        return true;
-      default:
-        return false;
-    }
-  }
+  // ------- Virtual functions
+  /**
+   *  Set the state, eg. NeedsDraw, IsDrawn, ...
+   *  @param status The status the object should get.
+   */
+  virtual void setState( State status );
+
+  /**
+   *  Does the drawable needs to be drawn on the transformation
+   *  if set, the Drawable will be also be projected on the transformation
+   *  screen.
+   *  @param set Value to set
+   */
+  virtual void setDrawTransformation(bool set);
+
+  /**
+   *  Does the drawable needs to be drawn on the transformation
+   *  screen?
+   *  @return bool Draw transformation?
+   */
+  virtual auto drawTransformation() -> bool;
+
+  /**
+   *  Is a redraw needed?
+   *  @return bool Should we redraw?
+   */
+  virtual auto needsDrawing() -> bool;
+
 private:
   bool allowDrawTransformation{false};
 };

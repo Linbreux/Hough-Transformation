@@ -9,7 +9,7 @@ Rectangle{
     anchors.fill: parent
     contextType: "2d"
     property bool clear: false
-    property var xScale: 3
+    property var xScale: 1.5
     property var yScale: 1/3
     property var xOffset: 0
     property var yOffset: 300
