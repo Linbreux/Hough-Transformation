@@ -1,0 +1,14 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Nix
+        uses: cachix/install-nix-action@v26
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Build flake
+        run: nix build
